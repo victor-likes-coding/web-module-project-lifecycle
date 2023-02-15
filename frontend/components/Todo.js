@@ -6,6 +6,6 @@ export default class Todo extends React.Component {
     }
 
     render() {
-        return <div>{this.props.todo.name}</div>;
+        return <div onClick={() => this.props.completeTodo(this.props.id)}>{this.props.todo.name}</div>;
     }
 }
