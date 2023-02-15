@@ -50,7 +50,11 @@ export default class App extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return nextState.todos.length !== this.state.todos.length || nextState.todos.some((todo, i) => todo.completed !== this.state.todos[i].completed);
+        return (
+            nextState.todos.length !== this.state.todos.length ||
+            nextState.todos.some((todo, i) => todo.completed !== this.state.todos[i].completed) ||
+            nextState.showCompleted !== this.state.showCompleted
+        );
     }
 
     render() {
