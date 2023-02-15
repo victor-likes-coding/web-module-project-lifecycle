@@ -12,16 +12,33 @@ export default class App extends React.Component {
         };
     }
 
+    addTodo = (todo) => {
+        fetch(URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(todo),
+        })
+            .then((response) => response.json())
+            .then(({ data }) => this.setState({ todos: data }));
+    };
+
     componentDidMount() {
         fetch(URL)
             .then((response) => response.json())
             .then(({ data }) => this.setState({ todos: data }));
     }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextState.todos.length !== this.state.todos.length;
+    }
+
     render() {
         return (
             <div>
                 <TodoList todos={this.state.todos} />
-                <Form />
+                <Form addTodo={this.addTodo} />
             </div>
         );
     }
