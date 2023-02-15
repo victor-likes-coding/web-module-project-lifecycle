@@ -13,6 +13,7 @@ export default class TodoList extends React.Component {
                         <Todo
                             todo={todo}
                             key={todo.id}
+                            completeTodo={this.props.completeTodo}
                         />
                     ))}
             </div>
