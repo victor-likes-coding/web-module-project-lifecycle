@@ -24,6 +24,25 @@ export default class App extends React.Component {
             .then(({ data }) => this.setState({ todos: [...this.state.todos, data] }));
     };
 
+    completeTodo = (id) => {
+        fetch(`${URL}/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then((response) => response.json())
+            .then(({ data }) => {
+                const todos = this.state.todos.map((todo) => {
+                    if (todo.id === data.id) {
+                        return data;
+                    }
+                    return todo;
+                });
+                this.setState({ todos });
+            });
+    };
+
     componentDidMount() {
         fetch(URL)
             .then((response) => response.json())
@@ -31,13 +50,16 @@ export default class App extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return nextState.todos.length !== this.state.todos.length;
+        return nextState.todos.length !== this.state.todos.length || nextState.todos.some((todo, i) => todo.completed !== this.state.todos[i].completed);
     }
 
     render() {
         return (
             <div>
-                <TodoList todos={this.state.todos} />
+                <TodoList
+                    todos={this.state.todos}
+                    completeTodo={this.completeTodo}
+                />
                 <Form addTodo={this.addTodo} />
             </div>
         );
