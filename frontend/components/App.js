@@ -9,8 +9,14 @@ export default class App extends React.Component {
         super(props);
         this.state = {
             todos: [],
+            showCompleted: false,
         };
     }
+
+    updateCompletedView = (e) => {
+        e.preventDefault();
+        this.setState({ showCompleted: !this.state.showCompleted });
+    };
 
     addTodo = (todo) => {
         fetch(URL, {
