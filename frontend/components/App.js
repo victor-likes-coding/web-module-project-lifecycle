@@ -64,6 +64,10 @@ export default class App extends React.Component {
     }
 
     render() {
+        let todos = this.state.todos;
+        if (this.state.showCompleted) {
+            todos = todos.filter((todo) => !todo.completed);
+        }
         return (
             <div>
                 <TodoList
