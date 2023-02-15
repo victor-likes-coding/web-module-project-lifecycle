@@ -27,7 +27,7 @@ export default class Form extends React.Component {
                     onChange={this.handleChange}
                 />
                 <button type="submit">Add Todo</button>
-                <button>{this.props.showCompleted ? "Hide" : "Show"} Completed</button>
+                <button onClick={(e) => this.props.updateCompletedView(e)}>{this.props.showCompleted ? "Hide" : "Show"} Completed</button>
             </form>
         );
     }
