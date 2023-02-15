@@ -1,4 +1,5 @@
 import React from "react";
+import TodoList from "./TodoList";
 
 const URL = "http://localhost:9000/api/todos";
 
@@ -17,6 +18,10 @@ export default class App extends React.Component {
     }
     render() {
         console.log(this.state.todos);
-        return null;
+        return (
+            <div>
+                <TodoList todos={this.state.todos} />
+            </div>
+        );
     }
 }
