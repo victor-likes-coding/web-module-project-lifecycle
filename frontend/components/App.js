@@ -71,10 +71,13 @@ export default class App extends React.Component {
         return (
             <div>
                 <TodoList
-                    todos={this.state.todos}
+                    todos={todos}
                     completeTodo={this.completeTodo}
                 />
-                <Form addTodo={this.addTodo} />
+                <Form
+                    addTodo={this.addTodo}
+                    updateCompletedView={this.updateCompletedView}
+                />
             </div>
         );
     }
