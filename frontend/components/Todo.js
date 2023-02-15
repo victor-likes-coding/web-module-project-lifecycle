@@ -5,6 +5,10 @@ export default class Todo extends React.Component {
         super(props);
     }
 
+    shouldComponentUpdate(nextProps) {
+        return nextProps.todo.completed !== this.props.todo.completed;
+    }
+
     render() {
         return (
             <div onClick={() => this.props.completeTodo(this.props.todo.id)}>
