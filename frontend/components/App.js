@@ -21,7 +21,7 @@ export default class App extends React.Component {
             body: JSON.stringify(todo),
         })
             .then((response) => response.json())
-            .then(({ data }) => this.setState({ todos: data }));
+            .then(({ data }) => this.setState({ todos: [...this.state.todos, data] }));
     };
 
     componentDidMount() {
