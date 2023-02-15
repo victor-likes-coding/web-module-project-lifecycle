@@ -17,7 +17,6 @@ export default class App extends React.Component {
             .then((data) => this.setState({ todos: data }));
     }
     render() {
-        console.log(this.state.todos);
         return (
             <div>
                 <TodoList todos={this.state.todos} />
