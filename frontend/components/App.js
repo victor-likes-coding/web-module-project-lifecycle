@@ -14,7 +14,7 @@ export default class App extends React.Component {
     componentDidMount() {
         fetch(URL)
             .then((response) => response.json())
-            .then((data) => this.setState({ todos: data }));
+            .then(({ data }) => this.setState({ todos: data }));
     }
     render() {
         return (
